@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Building;
+use App\Parking_lot;
 use Illuminate\Http\Request;
 
 class BuildingController extends Controller
@@ -13,7 +15,9 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        return view('buildings');
+        $buildings = Building::GetBuildings();
+        $parkings = Parking_lot::GetParkingLots();
+        return view('buildings', compact('parkings','buildings'));
     }
 
     /**
@@ -34,7 +38,8 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Building::insertNewBuilding($request->all());
+         return redirect(url('/buildings'));
     }
 
     /**
