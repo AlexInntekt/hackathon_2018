@@ -3,6 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="<?php echo url('/buildings');?>">Buildings</a></li>
+                <li class="list-group-item"><a href="<?php echo url('/companies');?>">Companies</a></li>
+                <li class="list-group-item"><a href="<?php echo url('/employees');?>">Internal employees</a></li>
+                <li class="list-group-item"><a href="<?php echo url('/parking');?>">Parking lots</a></li>
+                <li class="list-group-item"><a href="<?php echo url('/bookings');?>">All bookings</a></li>
+            </ul>
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
