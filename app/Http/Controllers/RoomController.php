@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Parking_lot_space;
-use App\Parking_lot;
 use Illuminate\Http\Request;
 
-class ParkingLotController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class ParkingLotController extends Controller
      */
     public function index()
     {
-        $parkings = Parking_lot::GetParkingLots();
-        return view('parking',compact('parkings'));
+        
     }
 
     /**
@@ -37,9 +34,7 @@ class ParkingLotController extends Controller
      */
     public function store(Request $request)
     {
-        $parking_lot_id = Parking_lot::insertNewParkingLot($request->all());
-        Parking_lot_space::insertParkingSpaces($request->all(),$parking_lot_id);
-        return redirect(url('/parking'));
+        dd($request);
     }
 
     /**

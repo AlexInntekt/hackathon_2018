@@ -16,6 +16,7 @@ class CreateParkingLotSpacesTable extends Migration
         Schema::create('parking_lot_spaces', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('parking_lot_id');
+            $table->integer('number');
             $table->string('status');
             $table->string('license_plate')->nullable();
             $table->timestamps();

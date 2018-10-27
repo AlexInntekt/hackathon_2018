@@ -14,6 +14,7 @@ class Parking_lot extends Model
     	$parking->name = $data['name'];
     	$parking->number_of_parking_spaces = $data['parking_spaces'] + 0;
     	$parking->save();
+        return $parking->id;
     }
 
     public function scopeGetParkingLots(){
