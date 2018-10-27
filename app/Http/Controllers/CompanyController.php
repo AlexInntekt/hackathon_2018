@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Parking_lot;
+use App\Building;
+use App\Floor;
+use App\Companie;
+use App\Companies_to_building;
 use Illuminate\Http\Request;
 
-class ParkingLotController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +17,10 @@ class ParkingLotController extends Controller
      */
     public function index()
     {
-        $parkings = Parking_lot::GetParkingLots();
-        return view('parking',compact('parkings'));
+        $buildings = Building::GetBuildings();
+        $floors = Floor::GetFloors();
+        $companies = Companie::GetCompanies();
+        return view('company', compact('companies','buildings','floors'));
     }
 
     /**
@@ -36,8 +41,10 @@ class ParkingLotController extends Controller
      */
     public function store(Request $request)
     {
-        Parking_lot::insertNewParkingLot($request->all());
-        return redirect(url('/parking'));
+        $company_id = Companie::insertNewCompany($request->all());
+        Companies_to_building::insertNewRelation($request->all(),$company_id);
+        Floor::updateFloors($request->all()['floor']);
+        return redirect(url('/company'));
     }
 
     /**

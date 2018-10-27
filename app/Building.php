@@ -19,5 +19,6 @@ class Building extends Model
     	$building->numberOfFloors = $data['no_floors'];
     	$building->parking_lot_id = $data['parking'];
     	$building->save();
+        return $building->id;
     } 
 }

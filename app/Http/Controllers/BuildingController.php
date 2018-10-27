@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Floor;
 use App\Building;
 use App\Parking_lot;
 use Illuminate\Http\Request;
@@ -38,8 +39,9 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        Building::insertNewBuilding($request->all());
-         return redirect(url('/buildings'));
+        $building_id = Building::insertNewBuilding($request->all());
+        Floor::insertNewFloors($request->get('no_floors'),$building_id);
+        return redirect(url('/buildings'));
     }
 
     /**

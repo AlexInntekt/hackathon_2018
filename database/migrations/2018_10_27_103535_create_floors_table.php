@@ -17,6 +17,7 @@ class CreateFloorsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('building_id');
             $table->integer('number');
+            $table->boolean('status')->nullable();
             $table->timestamps();
             $table->foreign('building_id')->references('id')->on('buildings');
         });

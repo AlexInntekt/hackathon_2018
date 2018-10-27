@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="POST" action="<?php echo url('/buildings'); ?>">
+            <form method="POST" action="<?php echo url('/parking'); ?>">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter building name">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter parking name">
                 </div>
                 <div class="form-group">
                     <label for="parking_spaces">Number of Parking Spaces</label>
@@ -27,8 +27,7 @@
             </tr>
           </thead>
           <tbody>
-          @foreach($parkings as $parking)
-                
+          @foreach($parkings as $parking)   
             <tr>
               <th scope="row">{{$parking->id}}</th>
               <td>{{$parking->name}}</td>
