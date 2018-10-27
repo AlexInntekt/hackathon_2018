@@ -43,7 +43,7 @@
       <td>{{$building->numberOfFloors}}</td>
       @foreach($parkings as $parking)
         @if($building->parking_lot_id == $parking->id)
-        <td>{{$parking->name}}</td>
+            <td>{{$parking->name}}</td>
         @endif
       @endforeach
     </tr>
