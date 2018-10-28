@@ -11,7 +11,7 @@ class TestController extends Controller
 
 	public function index(){
 		echo storage_path();
-		echo base_path());
+		echo base_path();
 		return view('test');
 	}
 
