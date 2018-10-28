@@ -48,7 +48,7 @@
                       var cnt = 0;
                       for(i=0;i<all_floors.length;i++){
                         var value = all_floors[i].value.split(',');
-                        if(value[0]==building && value[3]!=1){
+                        if(value[0]==building){
                           var c = document.createElement("option");
                           c.text = value[1];
                           c.value = value[2];

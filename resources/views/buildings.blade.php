@@ -21,7 +21,6 @@
                 <div class="form-group">
                     <label for="parking_lot">Select parking lot</label>
                     <select multiple class="form-control" name="parking" id="parking_lot">
-                      <option value="-1">No parking</option>
                         @foreach($parkings as $parking)
                             <option value="{{$parking->id}}">{{$parking->name}}</option>
                         @endforeach
