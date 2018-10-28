@@ -12,14 +12,12 @@ class Room extends Model
     public function scopeGetRooms(){
     	return DB::table('rooms')->get();
     }
-    public static function insertRoom($data, $floor_id){
-    		dd($data);
+    public static function insertRoom($data){
 	    	$room = new Room;
-	    	$room ->floor_id = $floor_id;
+	    	$room ->name = $data['name'];
+	    	$room ->floor_id = $data['floor'];
 	    	$room ->type = $data['type'];
-
 	    	$room->save();
 	        return $room->id;
-		
 	}
 }

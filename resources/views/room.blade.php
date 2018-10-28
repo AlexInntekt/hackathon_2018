@@ -10,7 +10,14 @@
                     <label for="name">Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Enter room name">
                 </div>
-                
+
+            <div class="form-group">
+              <select name="type" id="type">
+                <option value="Office">Office</option>
+                <option value="ConferenceRoom">Conference Room</option>
+              </select>
+            </div>
+
             <div class="form-group">
                     <label for="building">Select building</label>
                     <select onchange="displayFloors();" class="form-control" name="building" id="building">
@@ -22,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="floor">Select floor</label>
-                    <select  class="form-control" name="floor[]" id="floor">
+                    <select  class="form-control" name="floor" id="floor">
                         <option value="">Choose a floor</option>
                     </select>
                 </div>
@@ -88,11 +95,7 @@
             <td> {{$floor->number}}</td>
             @endif
         @endforeach
-        @if($room->type==0)
-          <td> Office</td>
-        @else
-          <td> Conference room</td>
-          @endif
+          <td> {{$room->type}}</td>
 
     @endforeach
 
