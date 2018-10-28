@@ -13,7 +13,7 @@
                     <li class="list-group-item"><a href="<?php echo url('/parking');?>">Parking lots</a></li>
                 @endif
                 <li class="list-group-item"><a href="<?php echo url('/alerts');?>">Complaints</a></li>
-                <li class="list-group-item"><a href="<?php echo url('/bookings');?>">All bookings</a></li>
+                <li class="list-group-item"><a href="<?php echo url('/booking');?>">All bookings</a></li>
             </ul>
         </div>
         <div class="col-md-8">
