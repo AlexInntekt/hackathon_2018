@@ -38,9 +38,9 @@ class AlertController extends Controller
      */
     public function store(Request $request)
     {
-        $path = Storage::putFileAs('https://smarthackathon.azurewebsites.net/storage/app/public/photos/', $request->file('photo'), $request->file('photo')->getClientOriginalName());
+        $path = Storage::putFileAs('public/photos', $request->file('photo'), $request->file('photo')->getClientOriginalName());
         Alert::insertNewAlert(auth()->user()->getAttributes()['id'],$request->get('complaint'),$path);
-        Mail::to('admin@admin.com')->send(new AlertAdmin(auth()->user()->getAttributes()['name'],auth()->user()->getAttributes()['email'],$request->get('complaint'),'https://smarthackathon.azurewebsites.net/storage/app/public/photos/'.$request->file('photo')->getClientOriginalName()));
+        Mail::to('admin@admin.com')->send(new AlertAdmin(auth()->user()->getAttributes()['name'],auth()->user()->getAttributes()['email'],$request->get('complaint'),base_path().'/storage/app/'.$path));
         return redirect(url('/alerts'));
     }
 
