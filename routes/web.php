@@ -24,3 +24,5 @@ Route::resource('/parking', 'ParkingLotController');
 Route::resource('/company', 'CompanyController');
 Route::resource('/room', 'RoomController');
 Route::resource('/alerts', 'AlertController');
+
+Route::get('/test','TestController@index');
