@@ -17,6 +17,7 @@ class Building extends Model
     	$building = new Building;
     	$building->name = $data['name'];
     	$building->numberOfFloors = $data['no_floors'];
+        $building->numberOfElevators = $data['no_elevators'];
         if($data['parking'] == -1)
             $building->parking_lot_id = null;
         else

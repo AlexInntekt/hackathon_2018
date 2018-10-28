@@ -15,6 +15,10 @@
                     <input type="text" class="form-control" name="no_floors" id="no_floors" placeholder="No. of Floors">
                 </div>
                 <div class="form-group">
+                    <label for="no_elevators">No of Elevators</label>
+                    <input type="text" class="form-control" name="no_elevators" id="no_elevators" placeholder="No. of Elevators">
+                </div>
+                <div class="form-group">
                     <label for="parking_lot">Select parking lot</label>
                     <select multiple class="form-control" name="parking" id="parking_lot">
                       <option value="-1">No parking</option>
@@ -33,6 +37,7 @@
       <th scope="col">#</th>
       <th scope="col">Building Name</th>
       <th scope="col">Number of Floors</th>
+      <th scope="col">Number of Elevators</th>
       <th scope="col">Parking lot</th>
     </tr>
   </thead>
@@ -43,6 +48,7 @@
       <th scope="row">{{$building->id}}</th>
       <td>{{$building->name}}</td>
       <td>{{$building->numberOfFloors}}</td>
+      <td>{{$building->numberOfElevators}}</td>
       @if($building->parking_lot_id == null)
         <td>No parking for this building</td>
       @endif
