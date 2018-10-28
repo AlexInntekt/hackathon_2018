@@ -58,6 +58,16 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'building' => 'required',
+            'floor' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/company'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $company_id = Companie::insertNewCompany($request->all());
         Companies_to_building::insertNewRelation($request->all(),$company_id);
         Floor::updateFloors($request->all()['floor']);

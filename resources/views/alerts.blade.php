@@ -3,19 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <ul class="list-group">
-                @if($user_id == 1)
-                    <li class="list-group-item"><a href="<?php echo url('/buildings');?>">Buildings</a></li>
-                    <li class="list-group-item"><a href="<?php echo url('/room');?>">Rooms</a></li>
-                    <li class="list-group-item"><a href="<?php echo url('/company');?>">Companies</a></li>
-                    <li class="list-group-item"><a href="<?php echo url('/employee');?>">Internal employees</a></li>
-                    <li class="list-group-item"><a href="<?php echo url('/parking');?>">Parking lots</a></li>
-                @endif
-                <li class="list-group-item"><a href="<?php echo url('/alerts');?>">Complaints</a></li>
-                <li class="list-group-item"><a href="<?php echo url('/booking');?>">All bookings</a></li>
-            </ul>
-        </div>
         <div class="col-md-8">
             <form method="POST" enctype="multipart/form-data" action="<?php echo url('/alerts'); ?>">
                 @csrf
@@ -29,6 +16,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <br>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 </div>

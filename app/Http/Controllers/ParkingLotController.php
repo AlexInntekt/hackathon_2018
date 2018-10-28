@@ -53,6 +53,15 @@ class ParkingLotController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'parking_space' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/parking'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $parking_lot_id = Parking_lot::insertNewParkingLot($request->all());
         Parking_lot_space::insertParkingSpaces($request->all(),$parking_lot_id);
         return redirect(url('/parking'));

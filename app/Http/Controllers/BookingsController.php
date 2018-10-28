@@ -46,6 +46,18 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'building' => 'required',
+            'floor' => 'required',
+            'room' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/booking'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         Booking::insertNewBooking($request->all());
         return redirect(url('/booking'));
     }

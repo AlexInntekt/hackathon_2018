@@ -12,7 +12,8 @@
                 </div>
 
             <div class="form-group">
-              <select name="type" id="type">
+              <label for="type">Select Type</label>
+              <select name="type" id="type"  class="form-control">
                 <option value="Office">Office</option>
                 <option value="ConferenceRoom">Conference Room</option>
               </select>
@@ -60,6 +61,16 @@
                
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <br>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
         <div class="col-md-6">
 

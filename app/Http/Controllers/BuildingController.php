@@ -56,6 +56,17 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'no_floors' => 'required',
+            'no_elevators' => 'required',
+            'parking' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/buildings'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $building_id = Building::insertNewBuilding($request->all());
         Floor::insertNewFloors($request->get('no_floors'),$building_id);
         return redirect(url('/buildings'));

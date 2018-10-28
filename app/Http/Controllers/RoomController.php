@@ -59,6 +59,17 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'building' => 'required',
+            'floor' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/alerts'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $room = Room::insertRoom($request->all());
         return redirect(url('/room'));
     }

@@ -49,6 +49,15 @@ class AlertController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'complaint' => 'required',
+            'photo' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/alerts'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $path = Storage::putFileAs('public/photos', $request->file('photo'), $request->file('photo')->getClientOriginalName());
         Alert::insertNewAlert(auth()->user()->getAttributes()['id'],$request->get('complaint'),$path);
         Mail::to('admin@admin.com')->send(new AlertAdmin(auth()->user()->getAttributes()['name'],auth()->user()->getAttributes()['email'],$request->get('complaint'),base_path().'/storage/app/'.$path));

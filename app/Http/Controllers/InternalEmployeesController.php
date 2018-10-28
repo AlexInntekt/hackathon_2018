@@ -54,6 +54,16 @@ class InternalEmployeesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'building' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect(url('/employee'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $employee_id = Employee::insertNewEmployee($request->all());
         return redirect(url('/employee'));
     }
