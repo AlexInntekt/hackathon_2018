@@ -58,6 +58,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Company Name</th>
+              <th scope="col">Building</th>
             </tr>
           </thead>
           <tbody>
@@ -65,6 +66,27 @@
               <tr>
                 <th scope="row">{{$company->id}}</th>
                 <td>{{$company->name}}</td>
+                <?php $contor=0;?><td>
+                @foreach($companies_to_building as $relation) 
+                  @if($relation->company_id == $company->id )
+                    @foreach($floors as $floor)
+                      @if($floor->id == $relation->floor_id)
+                        @foreach($buildings as $building)
+                        
+                          @if($floor->building_id == $building->id)
+                            @if ($contor>0 )
+                            ,
+                            @endif
+                            {{$building->name}}
+                            <?php $contor=$contor+1 ?>
+                          @endif   
+                        
+                        @endforeach
+                      @endif
+                    @endforeach
+                  @endif
+                @endforeach</td>
+                
               </tr>
             @endforeach
           </tbody>

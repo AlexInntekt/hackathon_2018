@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Building;
+use App\Floor;
+use App\Companie;
+use App\Room;
+use App\Companies_to_building;
 
 class RoomController extends Controller
 {
@@ -13,7 +18,11 @@ class RoomController extends Controller
      */
     public function index()
     {
-        
+        $buildings = Building::GetBuildings();
+        $floors = Floor::GetFloors();
+        $companies = Companie::GetCompanies();
+        $rooms = Room::GetRooms();
+        return view('room', compact('companies','buildings','floors', 'rooms'));
     }
 
     /**
@@ -34,7 +43,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        dd($request->all());
     }
 
     /**

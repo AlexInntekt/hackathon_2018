@@ -17,10 +17,12 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        
         $buildings = Building::GetBuildings();
+        $companies_to_building = Companies_to_building::GetCompaniesToBuildings();
         $floors = Floor::GetFloors();
         $companies = Companie::GetCompanies();
-        return view('company', compact('companies','buildings','floors'));
+        return view('company', compact('companies','buildings','floors','companies_to_building'));
     }
 
     /**

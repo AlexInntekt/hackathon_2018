@@ -17,4 +17,7 @@ class Companies_to_building extends Model
 	    	$relation->save();
     	}
     }
+    public function scopeGetCompaniesToBuildings(){
+    	return DB::table('companies_to_buildings')->get();    
+    }
 }

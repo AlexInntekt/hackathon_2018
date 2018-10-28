@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <form method="POST" action="<?php echo url('/buildings'); ?>">
                 @csrf
                 <div class="form-group">
@@ -17,6 +17,7 @@
                 <div class="form-group">
                     <label for="parking_lot">Select parking lot</label>
                     <select multiple class="form-control" name="parking" id="parking_lot">
+                      <option value="-1">No parking</option>
                         @foreach($parkings as $parking)
                             <option value="{{$parking->id}}">{{$parking->name}}</option>
                         @endforeach
@@ -25,7 +26,8 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
-        <div class="col-md-6"><table class="table">
+        <div class="col-md-8">
+          <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -41,6 +43,10 @@
       <th scope="row">{{$building->id}}</th>
       <td>{{$building->name}}</td>
       <td>{{$building->numberOfFloors}}</td>
+      @if($building->parking_lot_id == null)
+        <td>No parking for this building</td>
+      @endif
+
       @foreach($parkings as $parking)
         @if($building->parking_lot_id == $parking->id)
             <td>{{$parking->name}}</td>

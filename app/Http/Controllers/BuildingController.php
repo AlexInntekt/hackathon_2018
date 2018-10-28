@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Floor;
 use App\Building;
 use App\Parking_lot;
+use App\Companies_to_building;
 use Illuminate\Http\Request;
 
 class BuildingController extends Controller
@@ -18,7 +19,8 @@ class BuildingController extends Controller
     {
         $buildings = Building::GetBuildings();
         $parkings = Parking_lot::GetParkingLots();
-        return view('buildings', compact('parkings','buildings'));
+        $companies_to_building = Companies_to_building::GetCompaniesToBuildings();
+        return view('buildings', compact('parkings','buildings','companies_to_building'));
     }
 
     /**
