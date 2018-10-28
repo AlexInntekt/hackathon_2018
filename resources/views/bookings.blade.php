@@ -33,7 +33,7 @@
                   <input type="hidden" class="all_floors" value="{{$floor->building_id}},{{$floor->number}},{{$floor->id}},{{$floor->status}}">
                 @endforeach
                 <div class="form-group">
-                    <label for="room">Select floor</label>
+                    <label for="room">Select room</label>
                     <select class="form-control" name="room" id="room">
                         <option value="">Choose a room</option>
                     </select>
@@ -60,7 +60,7 @@
                       var cnt = 0;
                       for(i=0;i<all_floors.length;i++){
                         var value = all_floors[i].value.split(',');
-                        if(value[0]==building && value[3]!=1){
+                        if(value[0]==building){
                           var c = document.createElement("option");
                           c.text = value[1];
                           c.value = value[2];
