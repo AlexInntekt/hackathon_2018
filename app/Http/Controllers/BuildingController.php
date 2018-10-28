@@ -61,6 +61,7 @@ class BuildingController extends Controller
             'name' => 'required',
             'no_floors' => 'required',
             'no_elevators' => 'required',
+            'parking' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect(url('/buildings'))
