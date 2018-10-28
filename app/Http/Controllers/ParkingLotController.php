@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Parking_lot_space;
 use App\Parking_lot;
 use Illuminate\Http\Request;
@@ -53,9 +54,9 @@ class ParkingLotController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'parking_space' => 'required',
+            'parking_spaces' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect(url('/parking'))

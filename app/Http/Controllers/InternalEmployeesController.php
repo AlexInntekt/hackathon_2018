@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Building;
 use App\Employee;
@@ -54,7 +55,7 @@ class InternalEmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'type' => 'required',
             'building' => 'required',

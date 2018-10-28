@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Building;
 use App\Floor;
 use App\Companie;
@@ -58,7 +59,7 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'building' => 'required',
             'floor' => 'required',

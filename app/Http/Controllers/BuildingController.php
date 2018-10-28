@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Floor;
 use App\Building;
 use App\Parking_lot;
@@ -56,7 +57,7 @@ class BuildingController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'no_floors' => 'required',
             'no_elevators' => 'required',

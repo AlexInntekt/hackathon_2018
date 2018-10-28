@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Booking;
 use App\Building;
 use App\Floor;
@@ -46,7 +47,7 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $validator = Validator::make($request->all(), [
             'building' => 'required',
             'floor' => 'required',
             'room' => 'required',

@@ -49,7 +49,7 @@ class AlertController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+         $validator = Validator::make($request->all(), [
             'complaint' => 'required',
             'photo' => 'required',
         ]);
