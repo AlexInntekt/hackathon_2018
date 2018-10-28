@@ -8,6 +8,18 @@ use App\Employee;
 
 class InternalEmployeesController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +27,13 @@ class InternalEmployeesController extends Controller
      */
     public function index()
     {
-        $buildings = Building::GetBuildings();
-        $employees = Employee::GetEmployee();
-        return view('employee', compact('buildings', 'employees'));
+        if(auth()->user()->getAttributes()['id']==1){
+            $buildings = Building::GetBuildings();
+            $employees = Employee::GetEmployee();
+            return view('employee', compact('buildings', 'employees'));
+        }
+        else
+            return view('error');
     }
 
     /**

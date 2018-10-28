@@ -10,6 +10,18 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,12 +29,15 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        
-        $buildings = Building::GetBuildings();
-        $companies_to_building = Companies_to_building::GetCompaniesToBuildings();
-        $floors = Floor::GetFloors();
-        $companies = Companie::GetCompanies();
-        return view('company', compact('companies','buildings','floors','companies_to_building'));
+        if(auth()->user()->getAttributes()['id']==1){
+            $buildings = Building::GetBuildings();
+            $companies_to_building = Companies_to_building::GetCompaniesToBuildings();
+            $floors = Floor::GetFloors();
+            $companies = Companie::GetCompanies();
+            return view('company', compact('companies','buildings','floors','companies_to_building'));
+        }
+        else
+            return view('error');
     }
 
     /**

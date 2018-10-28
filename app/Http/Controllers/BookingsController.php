@@ -2,26 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Booking;
 use App\Building;
 use App\Floor;
-use App\Companie;
 use App\Room;
-use App\Companies_to_building;
+use Illuminate\Http\Request;
 
-class RoomController extends Controller
+class BookingsController extends Controller
 {
-    
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
 
     /**
      * Display a listing of the resource.
@@ -30,15 +18,14 @@ class RoomController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->getAttributes()['id']==1){
-            $buildings = Building::GetBuildings();
-            $floors = Floor::GetFloors();
-            $companies = Companie::GetCompanies();
-            $rooms = Room::GetRooms();
-            return view('room', compact('companies','buildings','floors', 'rooms'));
-        }
+        $buildings = Building::GetBuildings();
+        $floors = Floor::GetFloors();
+        $rooms = Room::GetRooms();
+        if(auth()->user()==null)
+            $user_id = null;
         else
-            return view('error');
+        $user_id = auth()->user()->getAttributes()['id'];
+        return view('bookings',compact('user_id','buildings','floors','rooms'));
     }
 
     /**
@@ -59,8 +46,8 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $room = Room::insertRoom($request->all());
-        return redirect(url('/room'));
+        Booking::insertNewBooking($request->all());
+        return redirect(url('/booking'));
     }
 
     /**

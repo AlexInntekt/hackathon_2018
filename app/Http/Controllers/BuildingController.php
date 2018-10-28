@@ -10,6 +10,17 @@ use Illuminate\Http\Request;
 
 class BuildingController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +28,14 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        $buildings = Building::GetBuildings();
-        $parkings = Parking_lot::GetParkingLots();
-        $companies_to_building = Companies_to_building::GetCompaniesToBuildings();
-        return view('buildings', compact('parkings','buildings','companies_to_building'));
+        if(auth()->user()->getAttributes()['id']==1){
+            $buildings = Building::GetBuildings();
+            $parkings = Parking_lot::GetParkingLots();
+            $companies_to_building = Companies_to_building::GetCompaniesToBuildings();
+            return view('buildings', compact('parkings','buildings','companies_to_building'));
+        }
+        else
+            return view('error');
     }
 
     /**

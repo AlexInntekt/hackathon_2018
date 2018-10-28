@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class ParkingLotController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +27,12 @@ class ParkingLotController extends Controller
      */
     public function index()
     {
-        $parkings = Parking_lot::GetParkingLots();
-        return view('parking',compact('parkings'));
+        if(auth()->user()->getAttributes()['id']==1){
+            $parkings = Parking_lot::GetParkingLots();
+            return view('parking',compact('parkings'));
+        }
+        else
+            return view('error');
     }
 
     /**

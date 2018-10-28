@@ -5,11 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <ul class="list-group">
-                <li class="list-group-item"><a href="<?php echo url('/buildings');?>">Buildings</a></li>
-                <li class="list-group-item"><a href="<?php echo url('/room');?>">Rooms</a></li>
-                <li class="list-group-item"><a href="<?php echo url('/company');?>">Companies</a></li>
-                <li class="list-group-item"><a href="<?php echo url('/employee');?>">Internal employees</a></li>
-                <li class="list-group-item"><a href="<?php echo url('/parking');?>">Parking lots</a></li>
+                @if($user_id == 1)
+                    <li class="list-group-item"><a href="<?php echo url('/buildings');?>">Buildings</a></li>
+                    <li class="list-group-item"><a href="<?php echo url('/room');?>">Rooms</a></li>
+                    <li class="list-group-item"><a href="<?php echo url('/company');?>">Companies</a></li>
+                    <li class="list-group-item"><a href="<?php echo url('/employee');?>">Internal employees</a></li>
+                    <li class="list-group-item"><a href="<?php echo url('/parking');?>">Parking lots</a></li>
+                @endif
                 <li class="list-group-item"><a href="<?php echo url('/alerts');?>">Complaints</a></li>
                 <li class="list-group-item"><a href="<?php echo url('/bookings');?>">All bookings</a></li>
             </ul>
