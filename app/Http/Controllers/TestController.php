@@ -10,7 +10,8 @@ class TestController extends Controller
 {
 
 	public function index(){
-		dd(storage_path(),base_path());
+		echo storage_path();
+		echo base_path());
 		return view('test');
 	}
 
