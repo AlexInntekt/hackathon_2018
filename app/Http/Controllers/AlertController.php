@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Alert;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\AlertAdmin;
@@ -51,7 +52,6 @@ class AlertController extends Controller
     {
          $validator = Validator::make($request->all(), [
             'complaint' => 'required',
-            'photo' => 'required',
         ]);
         if ($validator->fails()) {
             return redirect(url('/alerts'))
